@@ -1,35 +1,20 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>CAR</span>
-        <span class="font-weight-light">E-shop</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">//TODO TWITTER LINK</span>
-
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+  <v-app id="app">
+    <NavbarLogin />
 
     <v-content>
-      <Login />
+      <router-view />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Login from './components/Login'
+import NavbarLogin from '@/components/NavbarLogin'
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-    Login
+    NavbarLogin
   },
   data: () => ({
     //
