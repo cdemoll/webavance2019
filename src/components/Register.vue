@@ -6,7 +6,7 @@
           <v-col cols="12" sm="8" md="4">
             <v-card class="elevation-12">
               <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-toolbar-title>Registration</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
                 <v-form>
@@ -36,7 +36,15 @@
                     label="Password"
                     name="password"
                     prepend-icon="lock"
-                    type="password"
+                    type="text"
+                  ></v-text-field>
+
+                  <v-text-field
+                    id="PswConfirm"
+                    label="Confirm"
+                    name="password"
+                    prepend-icon="lock"
+                    type="text"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
