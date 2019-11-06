@@ -26,7 +26,7 @@
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <v-btn color="secondary">Register</v-btn>
+                <v-btn color="secondary" @click="openRegister">Register</v-btn>
                 <v-spacer></v-spacer>
                 <v-btn color="primary">Login</v-btn>
               </v-card-actions>
