@@ -1,11 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import LoginView from './views/LoginView.vue'
-<<<<<<< HEAD
-import RegisterView from './views/RegisterView.vue'
-=======
-import RegisterView from './components/Register.vue'
->>>>>>> WIPG
+import Register from './views/RegisterView.vue'
+import Login from './views/LoginView.vue'
+import Dashboard from './views/DashboardView.vue'
 
 Vue.use(Router)
 
@@ -15,21 +12,26 @@ export default new Router({
   routes: [
     {
       path: '/',
-<<<<<<< HEAD
-      name: 'LoginView', //loginView
-      component: LoginView //LoginView
-    }
-   {
-      path: '/',
-=======
-      name: 'LoginView', // LoginView
-      component: LoginView // LoginView
+      redirect: '/login'
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/register',
->>>>>>> WIPG
-      name: 'RegisterView',
-      component: RegisterView
+      name: 'register',
+      component: Register
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })

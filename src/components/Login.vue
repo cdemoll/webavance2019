@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 <template>
   <v-app id="inspire">
     <v-content>
@@ -13,22 +14,39 @@
                   <v-text-field
                     label="Login"
                     name="login"
+                    v-model="login"
                     prepend-icon="person"
                     type="text"
+                    :rules="rules.required"
+                    required
                   ></v-text-field>
                   <v-text-field
-                    id="password"
                     label="Password"
                     name="password"
+                    v-model="pswd"
                     prepend-icon="lock"
                     type="password"
+                    :rules="rules.required"
+                    required
                   ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <v-btn color="secondary" @click="openRegister">Register</v-btn>
+                <v-btn color="secondary">
+                  <router-link
+                    to="/register"
+                    style="color: inherit; text-decoration: inherit;"
+                    >register</router-link
+                  >
+                </v-btn>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Login</v-btn>
+                <v-btn color="primary">
+                  <router-link
+                    to="/dashboard"
+                    style="color: inherit; text-decoration: inherit;"
+                    >Login</router-link
+                  >
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -42,7 +60,23 @@
 export default {
   name: 'Login',
   data: () => ({
-    drawer: null
-  })
+    login: '',
+    pswd: '',
+    drawer: null,
+    rules: {
+      required: v => !!v || 'Login is required'
+    }
+  }),
+  methods: {
+    submit: function() {
+      this.$emit('loginData', this.login)
+      this.$emit('pswdData', this.pswd)
+      this.login = ''
+      this.pswd = ''
+    },
+    redirectTo: function(path) {
+      this.$router.push(path)
+    }
+  }
 }
 </script>
