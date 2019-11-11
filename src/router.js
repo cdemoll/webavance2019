@@ -28,6 +28,10 @@ export default new Router({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })
