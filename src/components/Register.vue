@@ -9,12 +9,14 @@
                 <v-toolbar-title>Registration</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form @submit.prevent="submitform" method="post">
                   <v-text-field
                     label="Login"
                     name="login"
                     prepend-icon="person"
                     type="text"
+                    placeholder="enter your login"
+                    v-model="Logind"
                   ></v-text-field>
 
                   <v-text-field
@@ -22,6 +24,8 @@
                     name="Name"
                     prepend-icon="person"
                     type="text"
+                    placeholder="enter your name"
+                    v-model="Named"
                   ></v-text-field>
 
                   <v-text-field
@@ -29,6 +33,8 @@
                     name="Firstname"
                     prepend-icon="person"
                     type="text"
+                    placeholder="enter your firstname"
+                    v-model="Firstnamed"
                   ></v-text-field>
 
                   <v-text-field
@@ -37,6 +43,7 @@
                     name="password"
                     prepend-icon="lock"
                     type="text"
+                    v-model="passwordd"
                   ></v-text-field>
 
                   <v-text-field
@@ -45,11 +52,12 @@
                     name="password"
                     prepend-icon="lock"
                     type="text"
+                    v-model="confirmd"
                   ></v-text-field>
+                  <v-btn color="secondary" type="submit">Save</v-btn>
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <v-btn color="secondary">Save</v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
@@ -62,11 +70,27 @@
 
 <script>
 export default {
-  props: {
+  /*  props: {
     source: String
   },
   data: () => ({
     drawer: null
-  })
+  }),
+*/
+
+  data: () => {
+    return {
+      Logind: '',
+      Named: '',
+      Firstnamed: '',
+      passwordd: '',
+      confirmd: ''
+    }
+  },
+  methods: {
+    submitform: () => {
+      console.log('Form submitted successfully')
+    }
+  }
 }
 </script>
