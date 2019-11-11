@@ -7,11 +7,11 @@
             <v-toolbar-title>Login form</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-form>
+            <v-form @submit.prevent="loginTo">
               <v-text-field
                 label="Login"
                 name="login"
-                v-model="input.login"
+                v-model="login"
                 prepend-icon="person"
                 type="text"
                 required
@@ -19,7 +19,7 @@
               <v-text-field
                 label="Password"
                 name="password"
-                v-model="input.password"
+                v-model="password"
                 prepend-icon="lock"
                 type="password"
                 required
@@ -35,12 +35,13 @@
               >
             </v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary">
-              <router-link
+            <v-btn color="primary" type="submit">
+              Login
+              <!--<router-link
                 :to="{ name: 'dashboard' }"
                 style="color: inherit; text-decoration: inherit;"
                 >Login</router-link
-              >
+              >-->
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -53,12 +54,19 @@
 export default {
   name: 'LoginView',
   data: () => ({
-    input: {
-      login: '',
-      password: ''
-    },
+    login: '',
+    password: '',
     drawer: null
   }),
-  methods: {}
+  methods: {
+    loginTo: function() {
+      let login = this.login
+      let password = this.password
+      this.$store
+        .dispatch('loginTo', { login, password })
+        .then(() => this.$router.push('/'))
+        .catch(err => console.log(err))
+    }
+  }
 }
 </script>

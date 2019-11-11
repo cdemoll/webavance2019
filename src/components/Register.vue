@@ -7,23 +7,23 @@
             <v-toolbar-title>Registration</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-form @submit.prevent="submitform" method="post">
+            <v-form @submit.prevent="register" method="post">
               <v-text-field
                 label="Login"
                 name="login"
                 prepend-icon="person"
                 type="text"
                 placeholder="enter your login"
-                v-model="Logind"
+                v-model="login"
               ></v-text-field>
 
               <v-text-field
-                label="Name"
-                name="Name"
+                label="Firstname"
+                name="firstname"
                 prepend-icon="person"
                 type="text"
-                placeholder="enter your name"
-                v-model="Named"
+                placeholder="enter your firstname"
+                v-model="firstname"
               ></v-text-field>
 
               <v-text-field
@@ -31,8 +31,8 @@
                 name="Firstname"
                 prepend-icon="person"
                 type="text"
-                placeholder="enter your firstname"
-                v-model="Firstnamed"
+                placeholder="enter your lastname"
+                v-model="lastname"
               ></v-text-field>
 
               <v-text-field
@@ -41,7 +41,7 @@
                 name="password"
                 prepend-icon="lock"
                 type="text"
-                v-model="passwordd"
+                v-model="password"
               ></v-text-field>
 
               <v-text-field
@@ -50,7 +50,7 @@
                 name="password"
                 prepend-icon="lock"
                 type="text"
-                v-model="confirmd"
+                v-model="password_confirmation"
               ></v-text-field>
               <v-btn color="secondary" type="submit">Save</v-btn>
             </v-form>
@@ -67,25 +67,35 @@
 <script>
 export default {
   /*  props: {
-       source: String
-     },
-     data: () => ({
-       drawer: null
-     }),
-   */
+                                                                         source: String
+                                                                       },
+                                                                       data: () => ({
+                                                                         drawer: null
+                                                                       }),
+                                                                     */
 
   data: () => {
     return {
-      Logind: '',
-      Named: '',
-      Firstnamed: '',
-      passwordd: '',
-      confirmd: ''
+      login: '',
+      firstname: '',
+      lastname: '',
+      password: '',
+      password_confirmation: '',
+      is_admin: null
     }
   },
   methods: {
-    submitform: () => {
-      console.log('Form submitted successfully')
+    register: function() {
+      let data = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        is_admin: this.is_admin
+      }
+      this.$store
+        .dispatch('register', data)
+        .then(() => this.$router.push('/login'))
+        .catch(err => console.log(err))
     }
   }
 }
